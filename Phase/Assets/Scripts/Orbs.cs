@@ -9,6 +9,8 @@ public class Orbs : MonoBehaviour
     public Canvas canvas;
     public GameManager manager;
     public Player player;
+    public ParticleSystem ripple;
+    public SpriteRenderer sprite;
     public void Start()
     {
         
@@ -49,11 +51,12 @@ public class Orbs : MonoBehaviour
                 player.rb.gravityScale = player.gravScale;
                 manager.previousWorld = manager.currentWorld;
 
+                ripple.Play();
+                sprite.enabled = false;
+                
 
 
-
-
-                Destroy(this.gameObject);
+                Destroy(this.gameObject, 1f);
             }
             else if (orbID == "Purple")
             {
@@ -84,7 +87,12 @@ public class Orbs : MonoBehaviour
                 player.rb.gravityScale = player.gravScale;
                 manager.previousWorld = manager.currentWorld;
 
-                Destroy(this.gameObject);
+                ripple.Play();
+                sprite.enabled = false;
+
+
+
+                Destroy(this.gameObject, 1f);
             }
 
 
