@@ -28,8 +28,8 @@ public class CamController : MonoBehaviour
         if (CamFollow)
         {
             CamPos = Vector3.Lerp(CamPos, player.position, Lerp);
-            CamPos = new Vector3(CamPos.x, CamPos.y + CamY, -15);
-          
+            CamPos = new Vector3(CamPos.x, CamY, -15);
+            //CamPos = new Vector3(CamPos.x, CamPos.y + CamY, -15);
 
             transform.position = CamPos;
         }
