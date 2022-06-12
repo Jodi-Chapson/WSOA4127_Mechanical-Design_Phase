@@ -37,6 +37,13 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
+        
+        if (Input.GetKeyDown("escape"))
+        {
+            manager.GetComponent<_SceneManager>().Pause();
+        }
+        
+        
         if (isGrounded)
         {
 
@@ -71,7 +78,7 @@ public class Player : MonoBehaviour
             //canmove = true;
         }
 
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(2) && manager.GetComponent<_SceneManager>().paused == false)
         {
             ChangeWorld();
         }
@@ -187,4 +194,7 @@ public class Player : MonoBehaviour
 
         }
     }
+
+
+
 }
