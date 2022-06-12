@@ -51,6 +51,7 @@ public class Orbs : MonoBehaviour
                 player.rb.gravityScale = player.gravScale;
                 manager.previousWorld = manager.currentWorld;
 
+                Debug.Log("blue");
                 ripple.Play();
                 sprite.enabled = false;
                 
