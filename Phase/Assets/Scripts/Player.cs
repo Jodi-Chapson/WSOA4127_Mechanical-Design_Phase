@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     public float Speed;
     public float jump;
     public int gravScale;
+    public Vector3 targetrotation;
+    public Vector3 currentrotation;
+    public float Lerp;
 
     [Header("Input Info")]
     public float mousescroll;
@@ -34,6 +37,8 @@ public class Player : MonoBehaviour
     {
         Cursor.visible = false;
         rb = this.GetComponent<Rigidbody2D>();
+        currentrotation = Vector3.zero;
+        targetrotation = Vector3.zero;
         mousescroll = 1;
     }
 
@@ -44,8 +49,24 @@ public class Player : MonoBehaviour
         {
             manager.GetComponent<_SceneManager>().Pause();
         }
-        
-        
+
+        if(targetrotation.z == 240 && currentrotation.z == 0)
+        {
+            ringselector.rotation = Quaternion.Euler(0,0, 360);
+            currentrotation.z = 360;
+
+        }
+        else if (targetrotation.z == 0 && currentrotation.z == 240)
+        {
+            ringselector.rotation = Quaternion.Euler(0, 0, -120);
+            currentrotation.z = -120;
+        }
+
+        currentrotation = Vector3.Lerp(currentrotation, targetrotation, Lerp);
+        ringselector.rotation = Quaternion.Euler(currentrotation);
+
+ 
+
         if (isGrounded)
         {
 
@@ -191,36 +212,36 @@ public class Player : MonoBehaviour
         if (manager.accessedWorlds == 1)
         {
             //only one worlds, so do nothing
-            ringselector.rotation = Quaternion.Euler(0, 0, 0);
+            targetrotation = new Vector3(0, 0, 0);
         }
         else if (manager.accessedWorlds == 2)
         {
             //two worlds
             if (mousescroll == 1)
             {
-                ringselector.rotation = Quaternion.Euler(0, 0, 0);
+                targetrotation = new Vector3(0, 0, 0);
             }
             else if (mousescroll == 2)
             {
-                ringselector.rotation = Quaternion.Euler(0, 0, 180);
+                targetrotation = new Vector3(0, 0, 180);
             }
         }
         else if (manager.accessedWorlds == 3)
         {
-
+            
             //three worlds
 
             if (mousescroll == 1)
             {
-                ringselector.rotation = Quaternion.Euler(0, 0, 0);
+                targetrotation = new Vector3(0, 0, 0);
             }
             else if (mousescroll == 2)
             {
-                ringselector.rotation = Quaternion.Euler(0, 0, 120);
+                targetrotation = new Vector3(0, 0, 120);
             }
             else if (mousescroll == 3)
             {
-                ringselector.rotation = Quaternion.Euler(0, 0, 240);
+                targetrotation = new Vector3(0, 0, 240);
             }
 
 

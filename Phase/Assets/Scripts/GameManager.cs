@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player.GetComponent<Player>();
-        scrollwheel.sprite = colourwheel[0];
+        WorldSelectorUpdate();
 
     }
 

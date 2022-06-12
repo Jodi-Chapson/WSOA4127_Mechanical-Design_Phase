@@ -11,6 +11,7 @@ public class Door : MonoBehaviour
     public GameManager manager;
     public Player player;
     public CamController cam;
+    public GameObject endscreen;
 
 
     public void Update()
@@ -20,6 +21,9 @@ public class Door : MonoBehaviour
             if (isEnd)
             {
                 //cue end screen
+                player.canmove = false;
+                endscreen.SetActive(true);
+                Cursor.visible = true;
             }
             else
             {
