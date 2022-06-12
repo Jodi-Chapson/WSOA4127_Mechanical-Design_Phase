@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("References")]
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public GameManager manager;
     public SpriteRenderer background;
     public GameObject ringarrow;
