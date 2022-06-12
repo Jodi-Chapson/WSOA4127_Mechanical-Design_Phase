@@ -23,10 +23,13 @@ public class Door : MonoBehaviour
             }
             else
             {
-                //cam.CamFollow
+                
                 player.canmove = false;
+                cam.Lerp = 1;
                 player.transform.position = new Vector3 (nextlevelspawn.transform.position.x, nextlevelspawn.transform.position.y, nextlevelspawn.transform.position.z);
+                cam.Lerp = 0.9f;
                 player.canmove = true;
+                
             }
 
             canvas.gameObject.SetActive(false);
