@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     public Player player;
     public GameObject[] worlds;
+    public GameObject[] ghostworlds;
     public Sprite[] backgrounds;
     
     

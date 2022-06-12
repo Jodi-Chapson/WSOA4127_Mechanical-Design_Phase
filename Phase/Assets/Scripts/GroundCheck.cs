@@ -27,4 +27,13 @@ public class GroundCheck : MonoBehaviour
             player.isGrounded = true;
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Player player = GetComponentInParent<Player>();
+            player.isGrounded = false;
+        }
+    }
 }

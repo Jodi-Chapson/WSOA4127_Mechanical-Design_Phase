@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     public GameManager manager;
     public SpriteRenderer background;
+    public GameObject ringarrow;
+    public RectTransform ringselector;
 
     [Header("States")]
     public bool isGrounded;
@@ -154,9 +156,77 @@ public class Player : MonoBehaviour
         if (mousescroll != manager.currentWorld)
         {
             //then queue the visual overlapping effects 
+
+            for (int i = 0; i < manager.ghostworlds.Length; i++)
+            {
+                if (i != mousescroll - 1)
+                {
+
+                    manager.ghostworlds[i].SetActive(false);
+                }
+                else
+                {
+                    manager.ghostworlds[i].SetActive(true);
+
+                }
+
+            }
+
+            
+
+
+            
+        }
+        else
+        {
+            for (int i = 0; i < manager.ghostworlds.Length; i++)
+            {
+                manager.ghostworlds[i].SetActive(false);
+                
+            }
         }
 
-        
+
+        ringarrow.SetActive(true);
+        if (manager.accessedWorlds == 1)
+        {
+            //only one worlds, so do nothing
+            ringselector.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (manager.accessedWorlds == 2)
+        {
+            //two worlds
+            if (mousescroll == 1)
+            {
+                ringselector.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (mousescroll == 2)
+            {
+                ringselector.rotation = Quaternion.Euler(0, 0, 180);
+            }
+        }
+        else if (manager.accessedWorlds == 3)
+        {
+
+            //three worlds
+
+            if (mousescroll == 1)
+            {
+                ringselector.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (mousescroll == 2)
+            {
+                ringselector.rotation = Quaternion.Euler(0, 0, 120);
+            }
+            else if (mousescroll == 3)
+            {
+                ringselector.rotation = Quaternion.Euler(0, 0, 240);
+            }
+
+
+        }
+
+
 
     }
 
@@ -167,6 +237,8 @@ public class Player : MonoBehaviour
         {
             if (mousescroll != manager.currentWorld)
             {
+
+                ringarrow.SetActive(false);
                 //removes the old world
                 GameObject pastWorld = manager.worlds[manager.previousWorld - 1];
                 
@@ -175,6 +247,12 @@ public class Player : MonoBehaviour
 
                 //brings in new world and updates information
                 manager.currentWorld = (int)mousescroll;
+                for (int i = 0; i < manager.ghostworlds.Length; i++)
+                {
+                    manager.ghostworlds[i].SetActive(false);
+
+                }
+                
                 GameObject newWorld = manager.worlds[manager.currentWorld - 1];
                 background.sprite = manager.backgrounds[manager.currentWorld - 1];
                 

@@ -36,6 +36,7 @@ public class _SceneManager : MonoBehaviour
     public void Pause()
     {
         paused = true;
+        Time.timeScale = 0f;
         player.canmove = false;
 
 
@@ -46,6 +47,7 @@ public class _SceneManager : MonoBehaviour
     }
     public void UnPause()
     {
+        Time.timeScale = 1f;
         pausemenu.SetActive(false);
         Cursor.visible = false;
 
