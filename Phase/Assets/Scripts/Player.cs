@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [Header("References")]
     private Rigidbody2D rb;
     public GameManager manager;
+    public SpriteRenderer background;
 
     [Header("States")]
     public bool isGrounded;
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
+        Cursor.visible = false;
         rb = this.GetComponent<Rigidbody2D>();
         mousescroll = 1;
     }
@@ -160,12 +162,15 @@ public class Player : MonoBehaviour
             {
                 //removes the old world
                 GameObject pastWorld = manager.worlds[manager.previousWorld - 1];
+                
                 rb.gravityScale = 0;
                 pastWorld.SetActive(false);
 
                 //brings in new world and updates information
                 manager.currentWorld = (int)mousescroll;
                 GameObject newWorld = manager.worlds[manager.currentWorld - 1];
+                background.sprite = manager.backgrounds[manager.currentWorld - 1];
+                
                 newWorld.SetActive(true);
                 rb.gravityScale = gravScale;
                 manager.previousWorld = manager.currentWorld; 

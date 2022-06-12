@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     public Player player;
     public GameObject[] worlds;
+    public Sprite[] backgrounds;
     
     
     // Start is called before the first frame update
